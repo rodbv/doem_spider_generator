@@ -29,7 +29,7 @@ def load_cities():
         return [[state, city, url] for [state, city, url] in rows]
 
 
-def save_spiders(directory, matched_cities):
+def generate_spider_files(output_dir, matched_cities):
     template_file = open("spider_template", mode="r")
     template = template_file.read()
     for (territory_id, state, city, city_full, _) in matched_cities:
@@ -42,18 +42,19 @@ def save_spiders(directory, matched_cities):
             .replace("{state}", state)
             .replace("{city}", city)
         )
-        with open(os.path.join(directory, filename), "w") as spider_file:
+        with open(os.path.join(output_dir, filename), "w") as spider_file:
             spider_file.write(spider_code)
 
 
 def main():
     territories = load_territories()
+    cities = load_cities()
+
+    output_dir = os.path.join("spiders", datetime.now().strftime("%Y_%m_%d_%s"))
+    os.makedirs(output_dir)
+
     matched = []
     not_matched = []
-    cities = load_cities()
-    directory = os.path.join("spiders", datetime.now().strftime("%Y_%m_%d_%s"))
-    os.makedirs(directory)
-
     for (state, city, url) in cities:
         for (territory_id, t_city, t_city_name, t_state) in territories:
             if t_city == city and t_state == state:
@@ -61,14 +62,15 @@ def main():
                 break
         else:
             not_matched.append([state, city])
-    save_spiders(directory, matched)
 
-    with open(os.path.join(directory, "00_not_matched.csv"), "w") as not_matched_file:
+    generate_spider_files(output_dir, matched)
+
+    with open(os.path.join(output_dir, "00_not_matched.csv"), "w") as not_matched_file:
         not_matched_file.writelines(
             [f"{state},{city}\n" for [state, city] in not_matched]
         )
 
-    with open(os.path.join(directory, "01_matched.csv"), "w") as matched_file:
+    with open(os.path.join(output_dir, "01_matched.csv"), "w") as matched_file:
         matched_file.writelines(
             [f"{state},{city},{url}\n" for [_, state, city, _, url] in matched]
         )
