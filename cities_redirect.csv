@@ -1,1 +1,10 @@
-state,city,url,redirect,in_use
+ba,capimgrosso,https://doem.org.br/ba/capimgrosso/pesquisar?data_inicial=2000-01-01
+ba,coaraci,https://doem.org.br/ba/coaraci/pesquisar?data_inicial=2000-01-01
+ba,consorciointermunicipalsomar,https://doem.org.br/ba/consorciointermunicipalsomar/pesquisar?data_inicial=2000-01-01
+ba,itabuna,https://doem.org.br/ba/itabuna/pesquisar?data_inicial=2000-01-01
+ba,itamaraju,https://doem.org.br/ba/itamaraju/pesquisar?data_inicial=2000-01-01
+ba,jacobina,https://doem.org.br/ba/jacobina/pesquisar?data_inicial=2000-01-01
+ba,miguelcalmon,https://doem.org.br/ba/miguelcalmon/pesquisar?data_inicial=2000-01-01
+ba,portoseguro,https://doem.org.br/ba/portoseguro/pesquisar?data_inicial=2000-01-01
+ba,rioreal,https://doem.org.br/ba/rioreal/pesquisar?data_inicial=2000-01-01
+ba,saodesiderio,https://doem.org.br/ba/saodesiderio/pesquisar?data_inicial=2000-01-01
