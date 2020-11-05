@@ -30,7 +30,7 @@ def load_cities():
 
 
 def save_spiders(directory, matched_cities):
-    template_file = open("spider_template.txt", mode="r")
+    template_file = open("spider_template", mode="r")
     template = template_file.read()
     for (territory_id, state, city, city_full) in matched_cities:
         filename = f"{state}_{city}.py"
@@ -52,7 +52,7 @@ def main():
     not_matched = []
     cities = load_cities()
     directory = os.path.join("spiders", datetime.now().strftime("%Y_%m_%d_%s"))
-    os.mkdir(directory)
+    os.makedirs(directory)
 
     for (state, city) in cities:
         for (territory_id, t_city, t_city_name, t_state) in territories:
